@@ -165,7 +165,7 @@ For packages, see environment.yaml.
 
 ![inversion_sota](./Images/inversion_sota.png)
 Comparisons with state-of-the-art personalization methods including Textual Inversion (TI), DreamBooth, XTI, and Perfusion.
-The **bold** words correspond to the additional concepts added to each image, (e.g. the 3rd column in (a) shows the result of `A standing cat in a chef outfit', the 6th column in (b) shows the result of `A tilting cat wearing sunglasses').
+The **bold** words correspond to the additional concepts added to each image, (e.g. the 3rd column in (a) shows the result of 'A standing cat in a chef outfit', the 6th column in (b) shows the result of 'A tilting cat wearing sunglasses').
 The resulting images of XTI and Perfusion are borrowed from their paper, so the results of adding concepts are not shown.
 Our method is faithful to convey the appearance and material of the reference image while having better controllability and diversity.
 
