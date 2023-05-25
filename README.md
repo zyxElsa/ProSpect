@@ -159,6 +159,24 @@ For packages, see environment.yaml.
    
 <p align="right">(<a href="#top">back to top</a>)</p>
  -->
+ 
+ 
+### Prompt Spectrum Space
+
+![intro](./Images/intro.png)
+Differences between (a) standard textual conditioning P and (c) the proposed prompt spectrum conditioning P*. Instead of learning global textual conditioning for the whole diffusion process, _ProSpect_ obtains a set of different token embeddings delivered from different denoising stages.
+Textual Inversion loses most of the fidelity.
+Compared with DreamBooth that generates cat-like objects in the images, _ProSpect_ can separate content and material, and is more fit for attribute-aware T2I image generation.
+
+### Motivation
+
+![motivation](./Images/motivation.png)
+
+Experimental results showing that different attributes exist at different steps.
+(a) Results of removing prompts 'a profile of a furry parrot' of different steps.
+(b) Results of adding material attribute 'yarn' and color attribute 'blue'.
+(c) Results of removing style attribute 'Monet' and
+
 ### Attribute-aware Image Generation with _ProSpect_
 
 ## Content-aware Image Generation
