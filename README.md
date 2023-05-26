@@ -113,7 +113,6 @@ This section should list any major frameworks/libraries used to bootstrap your p
 
 <!-- GETTING STARTED -->
 ## Getting Started
-Coming soon ...
 
 ### Prerequisites
 
@@ -190,6 +189,8 @@ For packages, see environment.yaml.
      model = model,\
      )
    ```
+   
+   Enjoy!
    
 <p align="right">(<a href="#top">back to top</a>)</p>
 
