@@ -594,10 +594,10 @@ class LatentDiffusion(DDPM):
             raise NotImplementedError(f"encoder_posterior of type '{type(encoder_posterior)}' not yet implemented")
         return self.scale_factor * z
 
-    def get_learned_conditioning(self, c, x = None, z = None, initializer_words=None):
+    def get_learned_conditioning(self, c, x = None, z = None, prospect_words=None):
         if self.cond_stage_forward is None:
             if hasattr(self.cond_stage_model, 'encode') and callable(self.cond_stage_model.encode):
-                c = self.cond_stage_model.encode(c,  initializer_words = initializer_words, embedding_manager = self.embedding_manager)
+                c = self.cond_stage_model.encode(c,  prospect_words = prospect_words, embedding_manager = self.embedding_manager)
                 if isinstance(c, DiagonalGaussianDistribution):
                     c = c.mode()
             else:
@@ -1348,7 +1348,8 @@ class LatentDiffusion(DDPM):
                                            return_first_stage_outputs=True,
                                            force_c_encode=True,
                                            return_original_cond=True,
-                                           bs=N)                            
+                                           bs=N)
+        # print('log_images: len(c)',len(c))                                   
         N = min(x.shape[0], N)
         n_row = min(x.shape[0], n_row)
         log["inputs"] = x
@@ -1388,6 +1389,7 @@ class LatentDiffusion(DDPM):
 
         if sample:
             # get denoise row
+            # print('log_images:len(c)',len(c))
             with self.ema_scope("Plotting"):
                 samples, z_denoise_row = self.sample_log(cond=c,batch_size=N,ddim=use_ddim,
                                                          ddim_steps=ddim_steps,eta=ddim_eta)

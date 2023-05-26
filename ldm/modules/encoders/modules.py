@@ -174,7 +174,7 @@ class FrozenCLIPEmbedder(AbstractEncoder):
                 position_ids = None,
                 inputs_embeds = None,
                 embedding_manager = None,
-                initializer_words = None,
+                prospect_words = None,
             ) -> list:
 
                 seq_length = input_ids.shape[-1] if input_ids is not None else inputs_embeds.shape[-2]
@@ -188,7 +188,7 @@ class FrozenCLIPEmbedder(AbstractEncoder):
 
                 if embedding_manager is not None:
                     # print('CLIP->embedding_forward->embedding_manager is not None')
-                    inputs_embeds = embedding_manager(input_ids, inputs_embeds, initializer_words = initializer_words)
+                    inputs_embeds = embedding_manager(input_ids, inputs_embeds, prospect_words = prospect_words)
 
                     position_embeddings = self.position_embedding(position_ids)
                     embeddings = []
@@ -257,7 +257,7 @@ class FrozenCLIPEmbedder(AbstractEncoder):
             output_hidden_states = None,
             return_dict = None,
             embedding_manager = None,
-            initializer_words = None
+            prospect_words = None
         ):
             output_attentions = output_attentions if output_attentions is not None else self.config.output_attentions
             output_hidden_states = (
@@ -271,7 +271,7 @@ class FrozenCLIPEmbedder(AbstractEncoder):
             input_shape = input_ids.size()
             input_ids = input_ids.view(-1, input_shape[-1])
 
-            hidden_states = self.embeddings(input_ids=input_ids, position_ids=position_ids, embedding_manager=embedding_manager,initializer_words = initializer_words)
+            hidden_states = self.embeddings(input_ids=input_ids, position_ids=position_ids, embedding_manager=embedding_manager,prospect_words = prospect_words)
 
             bsz, seq_len = input_shape
             last_hidden_states = []
@@ -315,7 +315,7 @@ class FrozenCLIPEmbedder(AbstractEncoder):
             output_hidden_states = None,
             return_dict = None,
             embedding_manager = None,
-            initializer_words = None,
+            prospect_words = None,
         ):
             return self.text_model(
                 input_ids=input_ids,
@@ -325,7 +325,7 @@ class FrozenCLIPEmbedder(AbstractEncoder):
                 output_hidden_states=output_hidden_states,
                 return_dict=return_dict,
                 embedding_manager = embedding_manager,
-                initializer_words = initializer_words,
+                prospect_words = prospect_words,
             )
 
         self.transformer.forward = transformer_forward.__get__(self.transformer)
@@ -336,18 +336,18 @@ class FrozenCLIPEmbedder(AbstractEncoder):
         for param in self.parameters():
             param.requires_grad = False
 
-    def forward(self, text, initializer_words=None, **kwargs):
-        if initializer_words is not None:
-            print('Find Words:',initializer_words)
+    def forward(self, text, prospect_words=None, **kwargs):
+        if prospect_words is not None:
+            print('Find Words:',prospect_words)
         batch_encoding = self.tokenizer(text, truncation=True, max_length=self.max_length, return_length=True,
                                         return_overflowing_tokens=False, padding="max_length", return_tensors="pt")
         tokens = batch_encoding["input_ids"].to(self.device)        
-        z = self.transformer(input_ids=tokens, initializer_words = initializer_words, **kwargs)
+        z = self.transformer(input_ids=tokens, prospect_words = prospect_words, **kwargs)
 
         return z
 
-    def encode(self, text, initializer_words=None, **kwargs):
-        return self(text, initializer_words=initializer_words, **kwargs)
+    def encode(self, text, prospect_words=None, **kwargs):
+        return self(text, prospect_words=prospect_words, **kwargs)
 
 
 class FrozenCLIPTextEmbedder(nn.Module):

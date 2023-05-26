@@ -103,7 +103,7 @@ class EmbeddingManager(nn.Module):
             self,
             tokenized_text,
             embedded_text,    
-            initializer_words=None,
+            prospect_words=None,
     ):
         b, n, device = *tokenized_text.shape, tokenized_text.device
         print('batch',b)
@@ -130,12 +130,12 @@ class EmbeddingManager(nn.Module):
                 new_embedded_text[placeholder_idx] = placeholder_embedding[i].view(1,768).float()
                 self.embedded_texts.append(new_embedded_text)
 
-            if initializer_words is not None:
-                if isinstance(initializer_words, list) and len(initializer_words)==self.max_vectors_per_token:
-                    print('Find word list:',initializer_words)
-                    for i in range(len(initializer_words)):   
-                        if isinstance(initializer_words[i],str):
-                            words = initializer_words[i].split(' ')
+            if prospect_words is not None:
+                if isinstance(prospect_words, list) and len(prospect_words)==self.max_vectors_per_token:
+                    print('Find word list:',prospect_words)
+                    for i in range(len(prospect_words)):   
+                        if isinstance(prospect_words[i],str):
+                            words = prospect_words[i].split(' ')
                             if len(words)==1:
                                 if words[0] is not '*':
                                     none_word_token = self.get_token_for_string(words[0]).to(device)
@@ -169,8 +169,8 @@ class EmbeddingManager(nn.Module):
                                     new_embed_row = torch.cat([new_embedded_text[row][:col], new_embeddings[:num_vectors_for_token], new_embedded_text[row][col + 1:]], axis=0)[:n]
                                     new_embedded_text[row]  = new_embed_row
                                 self.embedded_texts[i]=new_embedded_text
-                        elif isinstance(initializer_words[i],int):
-                                new_embedded_text = self.embedded_texts[initializer_words[i]].clone().to(device) 
+                        elif isinstance(prospect_words[i],int):
+                                new_embedded_text = self.embedded_texts[prospect_words[i]].clone().to(device) 
                                 self.embedded_texts[i]=new_embedded_text
 
         return self.embedded_texts
