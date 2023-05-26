@@ -114,7 +114,7 @@ This section should list any major frameworks/libraries used to bootstrap your p
 <!-- GETTING STARTED -->
 ## Getting Started
 Coming soon ...
-<!-- 
+
 ### Prerequisites
 
 For packages, see environment.yaml.
@@ -157,8 +157,42 @@ For packages, see environment.yaml.
 
    To generate new images, run ProSpect.ipynb
    
+   ## Instructions
+   
+   `prompt`: text promt that injected into all stages. 
+   A '*' in the `prompt` will be replaced by `prospect_words`, if the `prospect_words` is not None.
+   Otherwise, '*' will be replaced by the learned token embedding.
+   
+   Edit `prospect_words` to change the prompts injected into different stages. 
+   A '*' in the `prospect_words` will be replaced by the learned token embedding.
+
+   For img2img, a `content_dir` to the image is needed.
+   
+   ```sh
+   main(prompt = '*', \
+     # content_dir = './dataset/teddy.jpg', \ # For img2img, a path to the image is needed
+     ddim_steps = 50, \
+     strength = 0.4, \
+     seed=41, \
+     height = 512, \
+     width = 768, \
+     prospect_words = ['a teddy * walking in times sqare',  # 10 generation ends\ 
+                          'a teddy * walking in times sqare',  # 9 \
+                          'a teddy * walking in times sqare',  # 8 \
+                          'a teddy * walking in times sqare',  # 7 \ 
+                          'a teddy * walking in times sqare',  # 6 \ 
+                          'a teddy * walking in times sqare',  # 5 \
+                          'a teddy * walking in times sqare',  # 4 \
+                          'a teddy * walking in times sqare',  # 3 \
+                          'a teddy walking in times sqare',  # 2 \
+                          'a teddy walking in times sqare',  # 1 generation starts\ 
+                         ], \
+     model = model,\
+     )
+   ```
+   
 <p align="right">(<a href="#top">back to top</a>)</p>
- -->
+
  
  
 ### Prompt Spectrum Space
