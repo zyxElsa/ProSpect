@@ -157,14 +157,14 @@ For packages, see environment.yaml.
 
    To generate new images, run ProSpect.ipynb
    
-   ## Instructions
+   #### Instructions
    
    `prompt`: text promt that injected into all stages. 
-   A '*' in the `prompt` will be replaced by `prospect_words`, if the `prospect_words` is not None.
-   Otherwise, '*' will be replaced by the learned token embedding.
+   A '\*' in the `prompt` will be replaced by `prospect_words`, if the `prospect_words` is not None.
+   Otherwise, '\*' will be replaced by the learned token embedding.
    
    Edit `prospect_words` to change the prompts injected into different stages. 
-   A '*' in the `prospect_words` will be replaced by the learned token embedding.
+   A '\*' in the `prospect_words` will be replaced by the learned token embedding.
 
    For img2img, a `content_dir` to the image is needed.
    
