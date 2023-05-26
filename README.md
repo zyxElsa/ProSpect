@@ -175,16 +175,16 @@ For packages, see environment.yaml.
      seed=41, \
      height = 512, \
      width = 768, \
-     prospect_words = ['a teddy * walking in times sqare',  # 10 generation ends\ 
-                          'a teddy * walking in times sqare',  # 9 \
-                          'a teddy * walking in times sqare',  # 8 \
-                          'a teddy * walking in times sqare',  # 7 \ 
-                          'a teddy * walking in times sqare',  # 6 \ 
-                          'a teddy * walking in times sqare',  # 5 \
-                          'a teddy * walking in times sqare',  # 4 \
-                          'a teddy * walking in times sqare',  # 3 \
-                          'a teddy walking in times sqare',  # 2 \
-                          'a teddy walking in times sqare',  # 1 generation starts\ 
+     prospect_words = ['a teddy * walking in times square',  # 10 generation ends\ 
+                          'a teddy * walking in times square',  # 9 \
+                          'a teddy * walking in times square',  # 8 \
+                          'a teddy * walking in times square',  # 7 \ 
+                          'a teddy * walking in times square',  # 6 \ 
+                          'a teddy * walking in times square',  # 5 \
+                          'a teddy * walking in times square',  # 4 \
+                          'a teddy * walking in times square',  # 3 \
+                          'a teddy walking in times square',  # 2 \
+                          'a teddy walking in times square',  # 1 generation starts\ 
                          ], \
      model = model,\
      )
