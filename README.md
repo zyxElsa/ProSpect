@@ -165,13 +165,13 @@ For packages, see environment.yaml.
    Edit `prospect_words` to change the prompts injected into different stages. 
    A '\*' in the `prospect_words` will be replaced by the learned token embedding.
 
-   For img2img, a `content_dir` to the image is needed.
+   For img2img, a `content_dir` to the image, and a `strength` for diffusion are needed.
    
    ```sh
    main(prompt = '*', \
-     # content_dir = './dataset/teddy.jpg', \ # For img2img, a path to the image is needed
+     # content_dir = './dataset/teddy.jpg', \ 
+     # strength = 0.5, \
      ddim_steps = 50, \
-     strength = 0.4, \
      seed=41, \
      height = 512, \
      width = 768, \
