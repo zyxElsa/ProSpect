@@ -210,7 +210,14 @@ Compared with DreamBooth that generates cat-like objects in the images, _ProSpec
 Experimental results showing that different attributes exist at different steps.
 (a) Results of removing prompts 'a profile of a furry parrot' of different steps.
 (b) Results of adding material attribute 'yarn' and color attribute 'blue'.
-(c) Results of removing style attribute 'Monet' and
+(c) Results of removing style attribute 'Monet' and 'Picasso'.
+
+
+![prompt_visualization](./Images/prompt_visualization.png)
+
+The visualization results of token embeddings _𝑝𝑖_ obtained by _ProSpect_. 
+The results show that the initial generation step of the diffusion model is sensitive to structural information (e.g., bird’s pose, pot’s shape). 
+As the number of steps increases, the obtained 𝑝𝑖 gradually captures detailed information (e.g., the sideways head of the bird → bird’s wing → the texture of the bird’s feathers).
 
 ### Attribute-aware Image Generation with _ProSpect_
 
