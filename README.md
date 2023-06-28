@@ -189,7 +189,8 @@ For packages, see environment.yaml.
      model = model,\
      )
    ```
-   There are 4 ways to use ProSpect:
+
+   There are 4 ways to use _ProSpect_:
    
     1.Image editing: In img2img mode, modify the content, material, and style of the original image.
     
