@@ -189,6 +189,15 @@ For packages, see environment.yaml.
      model = model,\
      )
    ```
+   There are 4 ways to use ProSpect:
+   
+    1. Image editing: In img2img mode, modify the content, material, and style of the original image.
+    
+    2. Prompt-to-prompt editing: No need to learn token embedding*, in txt2img mode, use text to guide image generation, modify prompts at different stages to modify different attributes of generated images.
+    
+    3. Attribute guidance: In txt2img mode, first learn token embedding *. Use * to represent the learned image concept and control the image attributes corresponding to different stages.
+    
+    4. Flexible attribute guidance: In txt2img mode, learn token embedding * first. When an item of the input list 'prospect_words' is an int type of 0-9, the token embedding at this position will be replaced with the learned token embedding * at the corresponding position.
    
    Enjoy!
    
