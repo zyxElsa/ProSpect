@@ -202,6 +202,8 @@ For packages, see environment.yaml.
    
    Enjoy!
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 ### Data
 
 Download the training images [here](https://drive.google.com/file/d/1ZcC_YhGsvN0yD8trSIJjVBUaAZV0TjQf/view?usp=sharing)(8.1M). 
