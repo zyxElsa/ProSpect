@@ -201,12 +201,14 @@ For packages, see environment.yaml.
   4.Flexible attribute guidance: In txt2img mode, learn token embedding * first. When an item of the input list 'prospect_words' is an int type of 0-9, the token embedding at this position will be replaced with the learned token embedding * at the corresponding position.
    
    Enjoy!
-   
+
+### Data
+
+Download the training images [here](https://drive.google.com/file/d/1ZcC_YhGsvN0yD8trSIJjVBUaAZV0TjQf/view?usp=sharing)(8.1M). 
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
- 
- 
-### Prompt Spectrum Space
+## Prompt Spectrum Space
 
 ![intro](./Images/intro.png)
 Differences between (a) standard textual conditioning P and (c) the proposed prompt spectrum conditioning P*. Instead of learning global textual conditioning for the whole diffusion process, _ProSpect_ obtains a set of different token embeddings delivered from different denoising stages.
