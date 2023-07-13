@@ -154,44 +154,119 @@ For packages, see environment.yaml.
 
 ### Test
 
-   To generate new images, run ProSpect.ipynb
-   
-   #### Instructions
-   
-   `prompt`: text promt that injected into all stages. 
-   A '\*' in the `prompt` will be replaced by `prospect_words`, if the `prospect_words` is not None.
-   Otherwise, '\*' will be replaced by the learned token embedding.
-   
-   Edit `prospect_words` to change the prompts injected into different stages. 
-   A '\*' in the `prospect_words` will be replaced by the learned token embedding.
-
-   For img2img, a `content_dir` to the image, and a `strength` for diffusion are needed.
-   
-   ```sh
-   main(prompt = '*', \
-     # content_dir = './dataset/teddy.jpg', \ 
-     # strength = 0.5, \
-     ddim_steps = 50, \
-     seed=41, \
-     height = 512, \
-     width = 768, \
-     prospect_words = ['a teddy * walking in times square',  # 10 generation ends\ 
-                          'a teddy * walking in times square',  # 9 \
-                          'a teddy * walking in times square',  # 8 \
-                          'a teddy * walking in times square',  # 7 \ 
-                          'a teddy * walking in times square',  # 6 \ 
-                          'a teddy * walking in times square',  # 5 \
-                          'a teddy * walking in times square',  # 4 \
-                          'a teddy * walking in times square',  # 3 \
-                          'a teddy walking in times square',  # 2 \
-                          'a teddy walking in times square',  # 1 generation starts\ 
-                         ], \
-     model = model,\
-     )
-   ```
-
+  To generate new images, run ProSpect.ipynb
+  
+  #### Instructions
+  
+  `prompt`: text promt that injected into all stages. 
+  A '\*' in the `prompt` will be replaced by `prospect_words`, if the `prospect_words` is not None.
+  Otherwise, '\*' will be replaced by the learned token embedding.
+  
+  Edit `prospect_words` to change the prompts injected into different stages. 
+  A '\*' in the `prospect_words` will be replaced by the learned token embedding.
+  
+  For img2img, a `content_dir` to the image, and a `strength` for diffusion are needed.
+  
+  The main.py script is applicable for finetuning on style/material/content/layout.
+  
+  #### A more detailed example:
+  
+  Reference Image:
+  
+  ![reference](./Images/bear.png)
+  
+  ```sh
+  main(prompt = '*', \
+        ddim_steps = 50, \
+        strength = 0.6, \
+        seed=41, \
+        height = 512, \
+        width = 512, \
+        prospect_words = ['a corgi sits on the table', # 10 generation ends\
+                             'a corgi sits on the table', # 9 \
+                             'a corgi sits on the table', # 8 \
+                             'a corgi sits on the table', # 7 \
+                             'a corgi sits on the table', # 6 \
+                             'a corgi sits on the table', # 5 \
+                             'a corgi sits on the table', # 4 \
+                             'a corgi sits on the table', # 3 \
+                             'a corgi sits on the table', # 2 \
+                             'a corgi sits on the table *', # 1 generation starts\
+                            ], \
+        model = model,\
+        )
+  ```
+  
+  with _ProSpect_:
+  
+  ![result](./Images/a_corgi_sits_on_the_table_layout.png)
+  
+  without _ProSpect_:
+  
+  ![result](./Images/a_corgi_sits_on_the_table.png)
+  
+  ```sh
+  main(prompt = '*', \
+        ddim_steps = 50, \
+        strength = 0.6, \
+        seed=42, \
+        height = 512, \
+        width = 768, \
+        prospect_words = ['a * dog on the table', # 10 generation ends\
+                             'a * dog on the table', # 9 \
+                             'a * dog on the table', # 8 \
+                             'a * dog on the table', # 7 \
+                             'a * dog on the table', # 6 \
+                             'a dog on the table', # 5 \
+                             'a dog on the table', # 4 \
+                             'a dog on the table', # 3 \
+                             'a dog on the table', # 2 \
+                             'a dog on the table', # 1 generation starts\
+                            ], \
+        model = model,\
+        )
+  ```
+  
+  with _ProSpect_:
+  
+  ![result_material](./Images/a_dog_on_the_table_material.png)
+  
+  without _ProSpect_:
+  
+  ![result_material](./Images/a_dog_on_the_table.png)
+  
+  ```sh
+  main(prompt = '*', \
+        ddim_steps = 50, \
+        strength = 0.6, \
+        seed=42, \
+        height = 512, \
+        width = 768, \
+        prospect_words = ['a teddy * walking in times square', # 10 generation ends\
+                             'a teddy * walking in times square', # 9 \
+                             'a teddy * walking in times square', # 8 \
+                             'a teddy * walking in times square', # 7 \
+                             'a teddy * walking in times square', # 6 \
+                             'a teddy * walking in times square', # 5 \
+                             'a teddy * walking in times square', # 4 \
+                             'a teddy * walking in times square', # 3 \
+                             'a teddy walking in times square', # 2 \
+                             'a teddy walking in times square', # 1 generation starts\
+                            ], \
+        model = model,\
+        )
+  ```
+  
+  with _ProSpect_:
+  
+  ![result_content](./Images/a_teddy_walking_in_times_square_content.png)
+  
+  without _ProSpect_:
+  
+  ![result_content](./Images/a_teddy_walking_in_times_square.png)
+  
   There are 4 ways to use _ProSpect_
- 
+  
   1.Image editing: In img2img mode, modify the content, material, and style of the original image.
   
   2.Prompt-to-prompt editing: No need to learn token embedding *, in txt2img mode, use text to guide image generation, modify prompts at different stages to modify different attributes of generated images.
@@ -199,8 +274,11 @@ For packages, see environment.yaml.
   3.Attribute guidance: In txt2img mode, first learn token embedding *. Use * to represent the learned image concept and control the image attributes corresponding to different stages.
   
   4.Flexible attribute guidance: In txt2img mode, learn token embedding * first. When an item of the input list 'prospect_words' is an int type of 0-9, the token embedding at this position will be replaced with the learned token embedding * at the corresponding position.
-   
-   Enjoy!
+  
+  Enjoy!
+
+
+  
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
