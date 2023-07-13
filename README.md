@@ -174,6 +174,8 @@ For packages, see environment.yaml.
   Reference Image:
   
   ![reference](./Images/bear.png)
+
+  **Layout-aware T2I generation**
   
   ```sh
   main(prompt = '*', \
@@ -205,6 +207,8 @@ For packages, see environment.yaml.
   
   ![result](./Images/a_corgi_sits_on_the_table.png)
   
+  **Material-aware T2I generation**
+  
   ```sh
   main(prompt = '*', \
         ddim_steps = 50, \
@@ -235,6 +239,8 @@ For packages, see environment.yaml.
   
   ![result_material](./Images/a_dog_on_the_table.png)
   
+  **Content-aware T2I generation**
+  
   ```sh
   main(prompt = '*', \
         ddim_steps = 50, \
@@ -261,9 +267,6 @@ For packages, see environment.yaml.
   
   ![result_content](./Images/a_teddy_walking_in_times_square_content.png)
   
-  without _ProSpect_:
-  
-  ![result_content](./Images/a_teddy_walking_in_times_square.png)
   
   There are 4 ways to use _ProSpect_
   
