@@ -157,6 +157,28 @@ For packages, see environment.yaml.
   To generate new images, run ProSpect.ipynb
   
   #### Instructions
+
+  ```sh
+  main(prompt = '*', \
+    ddim_steps = 50, \
+    strength = 0.6, \
+    seed=42, \
+    height = 512, \
+    width = 768, \
+    prospect_words = ['a teddy * walking in times square', # 10 generation ends\
+                         'a teddy * walking in times square', # 9 \
+                         'a teddy * walking in times square', # 8 \
+                         'a teddy * walking in times square', # 7 \
+                         'a teddy * walking in times square', # 6 \
+                         'a teddy * walking in times square', # 5 \
+                         'a teddy * walking in times square', # 4 \
+                         'a teddy * walking in times square', # 3 \
+                         'a teddy walking in times square', # 2 \
+                         'a teddy walking in times square', # 1 generation starts\
+                        ], \
+    model = model,\
+    )
+  ```
   
   `prompt`: text promt that injected into all stages. 
   A '\*' in the `prompt` will be replaced by `prospect_words`, if the `prospect_words` is not None.
@@ -166,14 +188,41 @@ For packages, see environment.yaml.
   A '\*' in the `prospect_words` will be replaced by the learned token embedding.
   
   For img2img, a `content_dir` to the image, and a `strength` for diffusion are needed.
-  
-  The main.py script is applicable for finetuning on style/material/content/layout.
-  
+    
   #### A more detailed example:
   
   Reference Image:
   
   ![reference](./Images/bear.png)
+
+  **Content-aware T2I generation**
+  
+  ```sh
+  main(prompt = '*', \
+        ddim_steps = 50, \
+        strength = 0.6, \
+        seed=42, \
+        height = 512, \
+        width = 768, \
+        prospect_words = ['a teddy * walking in times square', # 10 generation ends\
+                             'a teddy * walking in times square', # 9 \
+                             'a teddy * walking in times square', # 8 \
+                             'a teddy * walking in times square', # 7 \
+                             'a teddy * walking in times square', # 6 \
+                             'a teddy * walking in times square', # 5 \
+                             'a teddy * walking in times square', # 4 \
+                             'a teddy * walking in times square', # 3 \
+                             'a teddy walking in times square', # 2 \
+                             'a teddy walking in times square', # 1 generation starts\
+                            ], \
+        model = model,\
+        )
+  ```
+  
+  with _ProSpect_:
+  
+  ![result_content](./Images/a_teddy_walking_in_times_square_content.png)
+  
 
   **Layout-aware T2I generation**
   
@@ -238,36 +287,7 @@ For packages, see environment.yaml.
   without _ProSpect_:
   
   ![result_material](./Images/a_dog_on_the_table.png)
-  
-  **Content-aware T2I generation**
-  
-  ```sh
-  main(prompt = '*', \
-        ddim_steps = 50, \
-        strength = 0.6, \
-        seed=42, \
-        height = 512, \
-        width = 768, \
-        prospect_words = ['a teddy * walking in times square', # 10 generation ends\
-                             'a teddy * walking in times square', # 9 \
-                             'a teddy * walking in times square', # 8 \
-                             'a teddy * walking in times square', # 7 \
-                             'a teddy * walking in times square', # 6 \
-                             'a teddy * walking in times square', # 5 \
-                             'a teddy * walking in times square', # 4 \
-                             'a teddy * walking in times square', # 3 \
-                             'a teddy walking in times square', # 2 \
-                             'a teddy walking in times square', # 1 generation starts\
-                            ], \
-        model = model,\
-        )
-  ```
-  
-  with _ProSpect_:
-  
-  ![result_content](./Images/a_teddy_walking_in_times_square_content.png)
-  
-  
+   
   There are 4 ways to use _ProSpect_
   
   1.Image editing: In img2img mode, modify the content, material, and style of the original image.
