@@ -362,15 +362,22 @@ Our method is faithful to convey the appearance and material of the reference im
 
 ![joint_result](./Images/joint_result.png)
 
-<!--
 ### Citation
    
    ```sh
-
+   @article{zhang2023prospect,
+  title={ProSpect: Prompt Spectrum for Attribute-Aware Personalization of Diffusion Models},
+  author={Zhang, Yuxin and Dong, Weiming and Tang, Fan and Huang, Nisha and Huang, Haibin and Ma, Chongyang and Lee, Tong-Yee and Deussen, Oliver and Xu, Changsheng},
+  journal={ACM Transactions on Graphics (TOG)},
+  volume={42},
+  number={6},
+  pages={1--14},
+  year={2023},
+  publisher={ACM New York, NY, USA}
+}
    ```
    
 <p align="right">(<a href="#top">back to top</a>)</p>
--->
 
 
 <!-- 
