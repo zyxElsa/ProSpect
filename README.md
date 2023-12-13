@@ -371,7 +371,7 @@ Our method is faithful to convey the appearance and material of the reference im
   journal={ACM Transactions on Graphics (TOG)},
   volume={42},
   number={6},
-  pages={1--14},
+  pages={244:1--244:14},
   year={2023},
   publisher={ACM New York, NY, USA}
 }
