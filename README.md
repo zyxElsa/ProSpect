@@ -81,7 +81,7 @@
 
 
 <!-- ABOUT THE PROJECT -->
-# ProSpect: Expanded Conditioning for the Personalization of Attribute-aware Image Generation
+# ProSpect: Prompt Spectrum for Attribute-Aware Personalization of Diffusion Models
 
 <!-- ![teaser](./Images/teaser.png) -->
 ![teaser](./Images/representation_image.jpeg)
